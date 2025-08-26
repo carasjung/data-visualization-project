@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "hconcat": [{"mark": {"type": "rect"}, "encoding": {"color": {"field": "Prevalence", "scale": {"scheme": "reds"}, "title": "Prevalence (%)", "type": "quantitative"}, "tooltip": [{"field": "Symptom", "type": "nominal"}, {"field": "PCOS_Status", "type": "nominal"}, {"field": "Prevalence", "format": ".1f", "type": "quantitative"}], "x": {"field": "PCOS_Status", "title": "PCOS Status", "type": "nominal"}, "y": {"field": "Symptom", "sort": "-color", "title": "Symptom", "type": "nominal"}}, "height": 300, "title": "Symptom Prevalence Heatmap", "width": 200}, {"mark": {"type": "bar"}, "encoding": {"color": {"field": "PCOS_Status", "scale": {"range": ["#10b981", "#ef4444"]}, "title": "PCOS Status", "type": "nominal"}, "tooltip": [{"field": "Symptom", "type": "nominal"}, {"field": "PCOS_Status", "type": "nominal"}, {"field": "Prevalence", "format": ".1f", "type": "quantitative"}], "x": {"field": "Prevalence", "title": "Prevalence (%)", "type": "quantitative"}, "y": {"field": "Symptom", "title": "Symptom", "type": "nominal"}}, "height": 300, "title": "Symptom Prevalence Comparison", "width": 400}], "data": {"name": "data-c418059c83d24fd5a7eac3c72346225d"}, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-c418059c83d24fd5a7eac3c72346225d": [{"Symptom": "Menstrual Irregularity", "PCOS_Status": "Yes", "Prevalence": 87.17948717948718}, {"Symptom": "Menstrual Irregularity", "PCOS_Status": "No", "Prevalence": 50.0}, {"Symptom": "Hormonal Imbalance", "PCOS_Status": "Yes", "Prevalence": 89.74358974358975}, {"Symptom": "Hormonal Imbalance", "PCOS_Status": "No", "Prevalence": 46.26865671641791}, {"Symptom": "Hyperandrogenism", "PCOS_Status": "Yes", "Prevalence": 51.28205128205128}, {"Symptom": "Hyperandrogenism", "PCOS_Status": "No", "Prevalence": 2.9850746268656714}, {"Symptom": "Hirsutism", "PCOS_Status": "Yes", "Prevalence": 61.53846153846154}, {"Symptom": "Hirsutism", "PCOS_Status": "No", "Prevalence": 17.91044776119403}, {"Symptom": "Insulin Resistance", "PCOS_Status": "Yes", "Prevalence": 38.46153846153847}, {"Symptom": "Insulin Resistance", "PCOS_Status": "No", "Prevalence": 4.477611940298507}, {"Symptom": "Mental Health", "PCOS_Status": "Yes", "Prevalence": 87.17948717948718}, {"Symptom": "Mental Health", "PCOS_Status": "No", "Prevalence": 66.4179104477612}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>
